@@ -8,6 +8,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  color-scheme: light;
   font-family: Plus Jakarta Sans;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -57,6 +58,7 @@ body {
 }
 
 .dark {
+  color-scheme: dark;
   --dashboard-background: #101513;
   --dashboard-foreground: #eef4ee;
   --dashboard-card: #18201b;
@@ -154,16 +156,6 @@ body {
   html {
     @apply font-sans;
   }
-}
-
-.dark {
-  background: #141414;
-  color: white;
-}
-
-.light {
-  background: white;
-  color: #252525;
 }
 
 .dockyard-dashboard {
