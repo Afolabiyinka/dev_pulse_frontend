@@ -2,7 +2,7 @@ import React from "react";
 import { Toaster } from "sonner";
 import RoutesConfig from "./shared/routes/routes-config";
 import { useTheme } from "./modules/theme/useTheme";
-import { useFetchUser } from "./modules/main/settings/useFetchUser";
+import { useFetchUser } from "./modules/main/settings/hooks/useFetchUser";
 import { useUser } from "./modules/main/settings/store/useUser";
 import { toastOptions } from "./shared/lib/toastOptions";
 

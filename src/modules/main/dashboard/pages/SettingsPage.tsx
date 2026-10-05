@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ProfileImageDialog from "@/modules/main/settings/components/ProfileImageDialog";
 import { useUser } from "@/modules/main/settings/store/useUser";
 
 const SettingsPage = () => {
@@ -89,17 +90,19 @@ const SettingsPage = () => {
             </div>
 
             <div className="grid gap-2 sm:grid-cols-[10rem_1fr] sm:items-center">
-              <label htmlFor="avatar-url" className="text-sm font-medium">
-                Avatar URL
-              </label>
-              <Input
-                id="avatar-url"
-                type="url"
-                inputMode="url"
-                value={avatar}
-                onChange={(event) => setAvatar(event.target.value)}
-                placeholder="https://example.com/avatar.png"
-              />
+              <span className="text-sm font-medium">Profile picture</span>
+              <div className="flex items-center gap-3">
+                <Avatar>
+                  <AvatarImage src={avatar.trim() || undefined} alt={displayName} />
+                  <AvatarFallback>{initials}</AvatarFallback>
+                </Avatar>
+                <ProfileImageDialog
+                  avatar={avatar}
+                  displayName={displayName}
+                  initials={initials}
+                  onAvatarChange={setAvatar}
+                />
+              </div>
             </div>
 
             <div className="flex justify-end border-t border-(--dashboard-border) pt-5">

@@ -1,6 +1,6 @@
 import { apiClient } from "@/shared/api/apiclient";
 import { useQuery } from "@tanstack/react-query";
-import type { UserResponse } from "./types/user.types";
+import type { UserResponse } from "../types/user.types";
 
 export const useFetchUser = () => {
   const { data, isLoading, isFetched, error, refetch } = useQuery({

@@ -8,7 +8,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  color-scheme: light;
+  /* color-scheme: light; */
   font-family: Plus Jakarta Sans;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -58,8 +58,8 @@ body {
 }
 
 .dark {
-  color-scheme: dark;
-  --dashboard-background: #101513;
+  /* color-scheme: dark; */
+  --dashboard-background: #30323d;
   --dashboard-foreground: #eef4ee;
   --dashboard-card: #18201b;
   --dashboard-control: rgba(255, 255, 255, 0.04);

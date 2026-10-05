@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import LinkBrand from "@/components/custom/logo";
+import { useUser } from "@/modules/main/settings/store/useUser";
+import { Navigate } from "react-router";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -17,6 +19,11 @@ const AuthLayout = ({
   title,
   eyebrow,
 }: AuthLayoutProps) => {
+  const { user } = useUser();
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
   return (
     <main className="min-h-screen bg-background text-foreground lg:grid lg:grid-cols-[minmax(360px,0.9fr)_1.1fr]">
       <aside className="relative hidden min-h-screen overflow-hidden bg-primary px-12 py-10 text-primary-foreground lg:flex lg:flex-col lg:justify-between xl:px-16">
