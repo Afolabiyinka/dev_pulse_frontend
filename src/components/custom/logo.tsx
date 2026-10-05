@@ -1,4 +1,4 @@
-import { Boxes } from "lucide-react";
+import { Zap } from "lucide-react";
 import { Link } from "react-router";
 
 const LinkBrand = () => (
@@ -7,7 +7,7 @@ const LinkBrand = () => (
     className="relative z-10 inline-flex w-fit items-center gap-2.5"
   >
     <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
-      <Boxes aria-hidden="true" size={19} strokeWidth={2.4} />
+      <Zap aria-hidden="true" size={19} strokeWidth={2.4} />
     </span>
     <span className="font-heading text-lg font-bold tracking-normal">
       DevPulse

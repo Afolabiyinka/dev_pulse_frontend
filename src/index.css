@@ -157,20 +157,3 @@ body {
     @apply font-sans;
   }
 }
-
-.dockyard-dashboard {
-  background-color: var(--dashboard-background) !important;
-  color: var(--dashboard-foreground) !important;
-}
-
-.dockyard-dashboard [class*="bg-[#18201b"] {
-  background-color: var(--dashboard-card) !important;
-}
-
-.dockyard-dashboard [class*="border-white"] {
-  border-color: var(--dashboard-border) !important;
-}
-
-.dockyard-dashboard [class*="bg-white"] {
-  background-color: var(--dashboard-control) !important;
-}

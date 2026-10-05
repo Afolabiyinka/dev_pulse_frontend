@@ -1,4 +1,10 @@
-import { ArrowRight, Boxes, Workflow } from "lucide-react";
+import {
+  ArrowRight,
+  Boxes,
+  Folders,
+  FolderArchiveIcon,
+  Workflow,
+} from "lucide-react";
 import { Link } from "react-router";
 
 const shortcuts = [
@@ -6,7 +12,7 @@ const shortcuts = [
     title: "Projects",
     description: "Organize the codebases in your workspace.",
     to: "/projects",
-    icon: Boxes,
+    icon: Folders,
   },
   {
     title: "Deployments",

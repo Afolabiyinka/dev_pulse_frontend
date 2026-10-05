@@ -21,13 +21,12 @@ const ThemeToggle = () => {
       <DropdownMenuTrigger asChild>
         <Button
           type="button"
-          variant="ghost"
-          size="sm"
+          variant="secondary"
           aria-label="Choose color theme"
           className="w-full justify-start gap-3 rounded-lg text-[var(--dashboard-muted)] hover:bg-[var(--dashboard-control)] hover:text-[var(--dashboard-foreground)]"
         >
           <ThemeIcon aria-hidden="true" size={17} />
-          <span className="capitalize">{theme} mode</span>
+          <span className="capitalize">{theme}</span>
           <ChevronDown aria-hidden="true" className="ml-auto" size={15} />
         </Button>
       </DropdownMenuTrigger>

@@ -20,10 +20,6 @@ const AuthLayout = ({
   return (
     <main className="min-h-screen bg-background text-foreground lg:grid lg:grid-cols-[minmax(360px,0.9fr)_1.1fr]">
       <aside className="relative hidden min-h-screen overflow-hidden bg-primary px-12 py-10 text-primary-foreground lg:flex lg:flex-col lg:justify-between xl:px-16">
-        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(color-mix(in_oklab,var(--primary-foreground)_12%,transparent)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary-foreground)_12%,transparent)_1px,transparent_1px)] [background-size:56px_56px]" />
-        <div className="absolute -right-24 top-[26%] h-[440px] w-[440px] rounded-full border border-primary-foreground/20" />
-        <div className="absolute -right-4 top-[34%] h-[280px] w-[280px] rounded-full border border-primary-foreground/20" />
-
         <LinkBrand />
 
         <div className="relative z-10 max-w-xl pb-10">
@@ -83,7 +79,7 @@ const AuthLayout = ({
         </div>
 
         <div className="mx-auto flex w-full max-w-[440px] items-center justify-between border-t border-border pt-5 text-xs text-muted-foreground">
-          <span>© 2026 Dockyard</span>
+          <span>© 2026 DevPulse</span>
           <a
             className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
             href="mailto:support@dockyard.dev"
