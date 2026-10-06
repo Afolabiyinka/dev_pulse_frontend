@@ -2,11 +2,21 @@ import React from "react";
 import { Toaster } from "sonner";
 import RoutesConfig from "./shared/routes/routes-config";
 import { useTheme } from "./modules/theme/useTheme";
+import { useFetchUser } from "./modules/main/settings/hooks/useFetchUser";
+import { useUser } from "./modules/main/settings/store/useUser";
+import { toastOptions } from "./shared/lib/toastOptions";
 
 const App = () => {
   const { theme } = useTheme();
+  const { fetchedUser, loading } = useFetchUser();
+  const { setUser, setAuthResolved } = useUser();
 
-  console.log(navigator.geolocation);
+  React.useEffect(() => {
+    if (!loading) {
+      setUser(fetchedUser || null);
+      setAuthResolved(true);
+    }
+  }, [fetchedUser, loading, setUser, setAuthResolved]);
 
   React.useEffect(() => {
     const appliedTheme =
@@ -33,26 +43,10 @@ const App = () => {
         duration={4500}
         style={
           {
-            "--normal-bg": "var(--card)",
-            "--normal-text": "var(--card-foreground)",
-            "--normal-border": "var(--border)",
             "--border-radius": "9999px",
           } as React.CSSProperties
         }
-        toastOptions={{
-          classNames: {
-            toast:
-              "border border-border  rounded-full shadow-lg ring-1 ring-foreground/5",
-            title: "text-sm font-semibold text-card-foreground",
-            description: "text-xs leading-relaxed text-muted-foreground",
-            actionButton:
-              "rounded-md bg-primary text-primary-foreground hover:bg-primary/90",
-            cancelButton:
-              "rounded-md bg-muted text-muted-foreground hover:bg-accent",
-            closeButton:
-              "border-border bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-          },
-        }}
+        toastOptions={toastOptions}
       />
     </div>
   );

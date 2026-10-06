@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { ApiClientError } from "@/shared/api/apiclient";
+import { apiClient, ApiClientError } from "@/shared/api/apiclient";
 import useToast from "@/shared/hooks/useToast";
-import { signup } from "../services/auth.request";
-import type { SignupPayload } from "../types/auth.types";
+import type { LoginResponse, SignupPayload } from "../types/auth.types";
 
 export const useSignup = () => {
   const [signupData, setSignupData] = useState<SignupPayload>({
@@ -18,7 +17,13 @@ export const useSignup = () => {
 
   const mutation = useMutation({
     mutationKey: ["auth", "signup"],
-    mutationFn: (payload: SignupPayload) => signup(payload),
+    mutationFn: async (payload: SignupPayload) => {
+      const { data } = await apiClient.post<LoginResponse>(
+        "/auth/signup",
+        payload,
+      );
+      return data;
+    },
     onSuccess: (data) => {
       toastSuccess(data.message ?? "Account created. You can now sign in.");
       navigate("/dashboard");
