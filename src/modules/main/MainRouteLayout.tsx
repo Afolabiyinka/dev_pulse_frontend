@@ -24,7 +24,7 @@ const MainRouteLayout = () => {
         <Sidebar />
 
         <main className="flex min-w-0 flex-1 flex-col">
-          <header className="flex h-16 shrink-0 items-center border-b  px-5 md:px-8">
+          <header className="flex h-16 shrink-0 items-center px-5 md:px-8">
             <p className="text-LG font-semibold">{pageTitle}</p>
           </header>
           <div className="flex-1 p-5 md:p-8">

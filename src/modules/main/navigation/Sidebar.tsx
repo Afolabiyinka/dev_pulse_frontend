@@ -6,8 +6,9 @@ import LinkBrand from "@/components/custom/logo";
 
 function Sidebar() {
   const location = useLocation();
+
   return (
-    <aside className="flex w-full shrink-0 flex-col border-b p-4 md:w-64 md:border-b-0 md:border-r md:p-5 gap-3">
+    <aside className="flex w-full shrink-0 flex-col p-4 md:w-64 md:p-5 gap-3">
       <LinkBrand />
 
       <p className="mb-2 mt-10 hidden px-3 text-[11px] font-semibold uppercase text-[--dashboard-subtle] md:block">

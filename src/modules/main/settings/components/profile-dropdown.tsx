@@ -10,10 +10,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronsUpDown, LogOut } from "lucide-react";
 import ThemeToggle from "@/modules/theme/theme-toggle";
 import { useUser } from "../store/useUser";
+import { useLogout } from "@/modules/auth/hooks/useLogout";
+import CustomBtn from "@/components/custom/CustomBtn";
 
 const ProfileDropdown = () => {
-  const user = useUser((state) => state.user);
+  const { user } = useUser();
   const initial = user?.github_username?.[0]?.toUpperCase() ?? "U";
+
+  const { logoutLoading, logoutMutate } = useLogout();
 
   return (
     <DropdownMenu>
@@ -67,8 +71,13 @@ const ProfileDropdown = () => {
           variant="destructive"
           className="cursor-pointer gap-2 rounded-xl px-2 py-2"
         >
-          <LogOut className="size-4" />
-          Log Out
+          <CustomBtn
+            onClick={() => logoutMutate()}
+            children={`${logoutLoading ? "Logging out..." : "Logout"}`}
+            icon={<LogOut />}
+            iconPosition="left"
+            variant="destructive"
+          />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
