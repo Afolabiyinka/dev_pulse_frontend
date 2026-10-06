@@ -1,15 +1,10 @@
-import { Navigate, Outlet, useLocation } from "react-router";
-import { mainNavigation } from "@/modules/main/navigation/main-navigation";
+import { Navigate, Outlet } from "react-router";
 import Loadingcontainer from "@/components/custom/loadingcontainer";
 import { useUser } from "./settings/store/useUser";
 import Sidebar from "@/modules/main/navigation/Sidebar";
 
 const MainRouteLayout = () => {
-  const { pathname } = useLocation();
   const { isAuthResolved, user } = useUser();
-  const pageTitle =
-    mainNavigation.find(({ to }) => to === pathname)?.label ?? "Workspace";
-
   if (!isAuthResolved) {
     return <Loadingcontainer />;
   }
@@ -24,9 +19,6 @@ const MainRouteLayout = () => {
         <Sidebar />
 
         <main className="flex min-w-0 flex-1 flex-col">
-          <header className="flex h-16 shrink-0 items-center px-5 md:px-8">
-            <p className="text-LG font-semibold">{pageTitle}</p>
-          </header>
           <div className="flex-1 p-5 md:p-8">
             <Outlet />
           </div>

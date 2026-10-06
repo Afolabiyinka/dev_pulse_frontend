@@ -58,7 +58,7 @@ body {
 
 .dark {
   /* color-scheme: dark; */
-  --dashboard-background: #30323d;
+  --dashboard-background: #1d1e21;
   --dashboard-foreground: #eef4ee;
   --dashboard-card: #18201b;
   --dashboard-control: rgba(255, 255, 255, 0.04);

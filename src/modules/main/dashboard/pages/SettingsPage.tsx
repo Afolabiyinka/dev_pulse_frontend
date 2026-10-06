@@ -1,9 +1,10 @@
 import { useState, type FormEvent } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ProfileImageDialog from "@/modules/main/settings/components/ProfileImageDialog";
 import { useUser } from "@/modules/main/settings/store/useUser";
+import CustomBtn from "@/components/custom/CustomBtn";
+import { Save } from "lucide-react";
 
 const SettingsPage = () => {
   const user = useUser((state) => state.user);
@@ -93,7 +94,10 @@ const SettingsPage = () => {
               <span className="text-sm font-medium">Profile picture</span>
               <div className="flex items-center gap-3">
                 <Avatar>
-                  <AvatarImage src={avatar.trim() || undefined} alt={displayName} />
+                  <AvatarImage
+                    src={avatar.trim() || undefined}
+                    alt={displayName}
+                  />
                   <AvatarFallback>{initials}</AvatarFallback>
                 </Avatar>
                 <ProfileImageDialog
@@ -106,9 +110,12 @@ const SettingsPage = () => {
             </div>
 
             <div className="flex justify-end border-t border-(--dashboard-border) pt-5">
-              <Button type="submit" size="lg">
-                Save changes
-              </Button>
+              <CustomBtn
+                icon={<Save />}
+                children="Save chnages"
+                type="button"
+                size={`lg`}
+              />
             </div>
           </div>
         </form>
