@@ -4,8 +4,7 @@ import { Button, buttonVariants } from "../ui/button";
 import SpinningLoader from "./spinning-loader";
 
 interface Props
-  extends
-    Omit<React.ComponentProps<"button">, "children">,
+  extends Omit<React.ComponentProps<"button">, "children">,
     VariantProps<typeof buttonVariants> {
   loading?: boolean;
   icon?: React.ReactNode;

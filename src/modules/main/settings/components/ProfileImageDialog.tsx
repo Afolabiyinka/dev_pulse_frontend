@@ -104,9 +104,9 @@ const ProfileImageDialog = ({
             aria-label="Choose profile picture"
             aria-describedby="avatar-help"
             onChange={handleImageChange}
-            className="h-auto rounded-xl py-2 file:mr-3 file:rounded-full file:border-0 file:bg-(--dashboard-control) file:px-3 file:py-2 file:text-sm file:font-medium file:text-(--dashboard-foreground)"
+            className="h-auto rounded-xl py-2 file:mr-3 file:rounded-full file:border-0 file:bg-muted file:px-3 file:py-2 file:text-sm file:font-medium file:text-foreground"
           />
-          <p id="avatar-help" className="text-xs text-(--dashboard-muted)">
+          <p id="avatar-help" className="text-xs text-muted-foreground">
             Supported formats depend on your browser.
           </p>
           {error && (

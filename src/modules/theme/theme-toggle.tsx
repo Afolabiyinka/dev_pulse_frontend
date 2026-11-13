@@ -30,7 +30,7 @@ const ThemeToggle = () => {
           type="button"
           variant="secondary"
           aria-label="Choose color theme"
-          className="w-full justify-between gap-3 rounded-lg text-[--dashboard-muted] hover:bg-[--dashboard-control] hover:text-[--dashboard-foreground]"
+          className="w-full justify-between gap-3 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent side="top" align="start" className="w-48">

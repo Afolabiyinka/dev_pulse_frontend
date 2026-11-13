@@ -41,7 +41,7 @@ const Login = () => {
         <CustomBtn
           className="w-full"
           type="button"
-          variant="secondary"
+          variant="outline"
           icon={<GithubLogo aria-hidden="true" size={18} />}
           onClick={handleGithubLogin}
         >

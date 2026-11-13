@@ -1,7 +1,6 @@
-import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router";
-
-import { ArrowRight, Folders, Workflow } from "lucide-react";
+import { ArrowRight, Folders, GitBranch } from "@phosphor-icons/react";
+import GithubRepos from "../../github/pages/GithubRepos";
 
 const shortcuts = [
   {
@@ -14,71 +13,45 @@ const shortcuts = [
     title: "Deployments",
     description: "Keep an eye on your latest releases.",
     to: "/deployments",
-    icon: Workflow,
+    icon: GitBranch,
   },
 ];
 
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 260, damping: 24 },
-  },
-};
-
-const MotionLink = motion.create(Link);
-
 const Dashboard = () => (
-  <motion.section
-    variants={container}
-    initial="hidden"
-    animate="show"
-    className="mx-auto w-full max-w-5xl"
-  >
-    <motion.div variants={item} className="mb-9">
-      <p className="mb-2 text-sm font-medium text-muted-foreground">
-        Your workspace
-      </p>
-      <h1 className="font-heading text-3xl font-bold tracking-normal">
-        A clear view of what you are building.
-      </h1>
-      <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
-        Your projects and deployment activity will live here as you get set up.
-      </p>
-    </motion.div>
+  <section className="mx-auto w-full max-w-6xl">
+    <header className="mb-8 flex flex-col gap-5 border-b pb-6 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+          Overview
+        </h1>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
+          Your repositories and workspace tools, together.
+        </p>
+      </div>
 
-    <div className="grid gap-3 sm:grid-cols-2">
-      {shortcuts.map(({ title, description, to, icon: Icon }) => (
-        <MotionLink
-          key={to}
-          to={to}
-          variants={item}
-          whileHover={{ y: -3 }}
-          whileTap={{ scale: 0.98 }}
-          className="group flex min-h-36 items-start justify-between rounded-xl border border-(--dashboard-border) p-5 outline-none transition-colors hover:bg-primary/20 focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          <div>
-            <span className="mb-5 flex size-18 items-center justify-center rounded-3xl bg-muted">
-              <Icon aria-hidden="true" size={40} className="stroke-[1px]" />
-            </span>
-            <h2 className="text-sm font-semibold">{title}</h2>
-            <p className="mt-1 text-sm text-muted-foreground">{description}</p>
-          </div>
-          <ArrowRight
-            aria-hidden="true"
-            className="mt-1  transition-transform group-hover:translate-x-1"
-            size={17}
-          />{" "}
-        </MotionLink>
-      ))}
+      <nav
+        aria-label="Workspace shortcuts"
+        className="flex flex-wrap gap-2 sm:justify-end"
+      >
+        {shortcuts.map(({ title, to, icon: Icon }) => (
+          <Link
+            key={to}
+            to={to}
+            className="group inline-flex min-h-11 items-center gap-2 rounded-xl bg-muted px-3.5 text-sm font-medium outline-none transition-colors hover:bg-muted/50
+             active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transform-none motion-reduce:transition-none"
+          >
+            <Icon aria-hidden="true" size={18} />
+            <span>{title}</span>
+            <ArrowRight aria-hidden="true" size={15} />
+          </Link>
+        ))}
+      </nav>
+    </header>
+
+    <div className="space-y-8">
+      <GithubRepos />
     </div>
-  </motion.section>
+  </section>
 );
 
 export default Dashboard;
