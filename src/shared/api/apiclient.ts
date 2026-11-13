@@ -17,8 +17,8 @@ export const queryClient = new QueryClient({
    },
 });
 
-const testingEndpoint = "http://localhost:8000/api";
-const prodEndpoint = "https://job-trackrr.onrender.com/api";
+const testingEndpoint = "http://localhost:8000/api/v1";
+const prodEndpoint = "https://job-trackrr.onrender.com/api/v1";
 export { testingEndpoint, prodEndpoint };
 
 export class ApiClientError extends Error {

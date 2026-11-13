@@ -7,13 +7,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { CaretUpDown, SignOut } from "@phosphor-icons/react";
 import ThemeToggle from "@/modules/theme/theme-toggle";
 import { useUser } from "../store/useUser";
 import { useLogout } from "@/modules/auth/hooks/useLogout";
 import CustomBtn from "@/components/custom/CustomBtn";
 
-const ProfileDropdown = () => {
+interface ProfileDropdownProps {
+  compact?: boolean;
+}
+
+const ProfileDropdown = ({ compact = false }: ProfileDropdownProps) => {
   const { user } = useUser();
   const initial = user?.github_username?.[0]?.toUpperCase() ?? "U";
 
@@ -21,7 +25,9 @@ const ProfileDropdown = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="group flex w-full items-center gap-3 rounded-2xl border p-2.5 text-left outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:bg-muted">
+      <DropdownMenuTrigger
+        className={`group flex ${compact ? "w-auto gap-2 p-1.5 sm:w-52 sm:gap-3 sm:p-2.5" : "w-full gap-3 p-2.5"} items-center rounded-2xl border text-left outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:bg-muted`}
+      >
         <Avatar className="size-9 rounded-xl">
           <AvatarImage
             src={user?.avatar || ""}
@@ -32,7 +38,7 @@ const ProfileDropdown = () => {
           </AvatarFallback>
         </Avatar>
 
-        <div className="min-w-0 flex-1">
+        <div className={`min-w-0 flex-1 ${compact ? "hidden sm:block" : ""}`}>
           <p className="truncate text-sm font-medium leading-tight">
             {user?.github_name}
           </p>
@@ -41,9 +47,10 @@ const ProfileDropdown = () => {
           </p>
         </div>
 
-        <ChevronsUpDown
+        <CaretUpDown
           aria-hidden="true"
-          className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
+          size={16}
+          className="shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
         />
       </DropdownMenuTrigger>
 
@@ -74,7 +81,7 @@ const ProfileDropdown = () => {
           <CustomBtn
             onClick={() => logoutMutate()}
             children={`${logoutLoading ? "Logging out..." : "Logout"}`}
-            icon={<LogOut />}
+            icon={<SignOut size={16} />}
             iconPosition="left"
             variant="destructive"
           />

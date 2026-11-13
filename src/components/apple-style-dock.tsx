@@ -1,55 +1,52 @@
-import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock";
-import ThemeToggle from "@/modules/theme/theme-toggle";
-import {
-  ActivityIcon,
-  HouseIcon,
-  MailboxIcon,
-  PackageIcon,
-  ScrollIcon,
-} from "@phosphor-icons/react";
-import { DockerIcon } from "./custom/iconwrapper";
 import { NavLink } from "react-router";
-
-const items = [
-  { title: "Home", icon: HouseIcon, path: "/" },
-  { title: "Images", icon: PackageIcon, path: "/images" },
-  { title: "Deployments", icon: DockerIcon, path: "/deployments" },
-  { title: "Activity", icon: ActivityIcon, path: "/activity" },
-  { title: "Change Log", icon: ScrollIcon, path: "/changelog" },
-  { title: "Inbox", icon: MailboxIcon, path: "/inbox" },
-];
+import { motion } from "framer-motion";
+import { mainNavigation } from "@/modules/main/navigation/main-navigation";
 
 export function AppleStyleDock() {
   return (
-    <div className="absolute bottom-4 left-1/2 max-w-full -translate-x-1/2">
-      <Dock className="items-end  pb-3 shadow-none ring-0">
-        {items.map(({ title, icon: Icon, path }) => (
+    <nav
+      aria-label="Main"
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 z-50 max-w-full -translate-x-1/2"
+    >
+      <div className="flex items-center gap-5 rounded-2xl border border-border/60 bg-background/80 p-2 shadow-lg shadow-black/10 backdrop-blur-xl">
+        {mainNavigation.map(({ label, icon: Icon, to, end }) => (
           <NavLink
-            key={title}
-            to={path}
-            end={path === "/"}
-            className="rounded-xl"
-            aria-label={title}
+            key={to}
+            to={to}
+            end={end}
+            aria-label={label}
+            title={label}
+            className={({ isActive }) =>
+              `relative flex h-12 items-center gap-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  focus-visible:ring-offset-background ${
+                isActive
+                  ? "px-3"
+                  : "w-14 justify-center text-muted-foreground hover:bg-primary/50 hover:text-foreground"
+              }`
+            }
           >
             {({ isActive }) => (
-              <DockItem
-                className={`aspect-square rounded-xl border transition-colors ${isActive ? "border-[#d9f36b] bg-[#d9f36b]/15 text-[#d9f36b]" : "border-border"}`}
-              >
-                <DockLabel>{title}</DockLabel>
-                <DockIcon>
-                  <Icon className="h-full w-full" />
-                </DockIcon>
-              </DockItem>
+              <>
+                {isActive && (
+                  <motion.span
+                    layoutId="dock-active-pill"
+                    className="absolute inset-0 rounded-full bg-primary/10"
+                    transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                  />
+                )}
+                <Icon
+                  className="relative size-6 shrink-0 text-foreground"
+                  // weight={isActive ? "fill" : "regular"}
+                />
+                {isActive && (
+                  <span className="relative text-sm font-medium whitespace-nowrap">
+                    {label}
+                  </span>
+                )}
+              </>
             )}
           </NavLink>
         ))}
-        <DockItem className="aspect-square rounded-xl border border-border">
-          <DockLabel>Theme</DockLabel>
-          <DockIcon>
-            <ThemeToggle />
-          </DockIcon>
-        </DockItem>
-      </Dock>
-    </div>
+      </div>
+    </nav>
   );
 }

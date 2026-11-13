@@ -1,6 +1,5 @@
 import { useState, type ChangeEvent } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,6 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import CustomBtn from "@/components/custom/CustomBtn";
 
 interface ProfileImageDialogProps {
   avatar: string;
@@ -71,9 +71,12 @@ const ProfileImageDialog = ({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button type="button" variant="secondary" size="sm">
-          Change image
-        </Button>
+        <CustomBtn
+          type="button"
+          variant="secondary"
+          size="sm"
+          children="Change Image"
+        />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -101,9 +104,9 @@ const ProfileImageDialog = ({
             aria-label="Choose profile picture"
             aria-describedby="avatar-help"
             onChange={handleImageChange}
-            className="h-auto rounded-xl py-2 file:mr-3 file:rounded-full file:border-0 file:bg-(--dashboard-control) file:px-3 file:py-2 file:text-sm file:font-medium file:text-(--dashboard-foreground)"
+            className="h-auto rounded-xl py-2 file:mr-3 file:rounded-full file:border-0 file:bg-muted file:px-3 file:py-2 file:text-sm file:font-medium file:text-foreground"
           />
-          <p id="avatar-help" className="text-xs text-(--dashboard-muted)">
+          <p id="avatar-help" className="text-xs text-muted-foreground">
             Supported formats depend on your browser.
           </p>
           {error && (
@@ -114,23 +117,22 @@ const ProfileImageDialog = ({
         </div>
 
         <DialogFooter>
-          <Button
+          <CustomBtn
             type="button"
             variant="outline"
             onClick={() => setOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button
+            children="Cancel"
+          />
+          <CustomBtn
+            children="Use this image
+"
             type="button"
             disabled={!pendingAvatar || Boolean(error)}
             onClick={() => {
               onAvatarChange(pendingAvatar);
               setOpen(false);
             }}
-          >
-            Use this image
-          </Button>
+          />
         </DialogFooter>
       </DialogContent>
     </Dialog>

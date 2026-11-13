@@ -31,7 +31,7 @@ const WorkspacePage = () => {
       <h1 className="font-heading text-3xl font-bold tracking-normal">
         {page.title}
       </h1>
-      <p className="mt-3 text-sm leading-6 text-(--dashboard-muted)">
+      <p className="mt-3 text-sm leading-6 text-muted-foreground">
         {page.description}
       </p>
     </section>

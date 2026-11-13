@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { Construction } from "lucide-react";
 import { useNavigate } from "react-router";
 import { motion, type Variants } from "framer-motion";
+import CustomBtn from "@/components/custom/CustomBtn";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -55,10 +55,10 @@ const FeatureInDevelopment = () => {
           variants={itemVariants}
           className="flex flex-col md:flex-row gap-3"
         >
-          <Button onClick={() => navigate(-1)}>Go Back</Button>
-          <Button variant="secondary" onClick={() => navigate("/dashboard")}>
+          <CustomBtn onClick={() => navigate(-1)} children="Go Back" />
+          <CustomBtn onClick={() => navigate("/dashboard")}>
             Dashboard
-          </Button>
+          </CustomBtn>
         </motion.div>
       </motion.div>
     </div>

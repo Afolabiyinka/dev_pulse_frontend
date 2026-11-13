@@ -1,9 +1,10 @@
 import { useState, type FormEvent } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ProfileImageDialog from "@/modules/main/settings/components/ProfileImageDialog";
 import { useUser } from "@/modules/main/settings/store/useUser";
+import CustomBtn from "@/components/custom/CustomBtn";
+import { Save } from "lucide-react";
 
 const SettingsPage = () => {
   const user = useUser((state) => state.user);
@@ -32,17 +33,17 @@ const SettingsPage = () => {
         <h1 className="font-heading text-3xl font-bold tracking-normal">
           Settings
         </h1>
-        <p className="mt-3 text-sm leading-6 text-(--dashboard-muted)">
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">
           Update your profile details. Changes are saved in this session only.
         </p>
       </div>
 
       <section
         aria-labelledby="profile-heading"
-        className="overflow-hidden rounded-2xl border border-(--dashboard-border)"
+        className="overflow-hidden rounded-2xl border border-border"
       >
         <form onSubmit={handleSubmit}>
-          <div className="flex items-center gap-4 border-b border-(--dashboard-border) p-5 md:p-6">
+          <div className="flex items-center gap-4 border-b border-border p-5 md:p-6">
             <Avatar size="lg" className="size-16">
               <AvatarImage src={avatar.trim() || undefined} alt={displayName} />
               <AvatarFallback className="text-lg font-semibold">
@@ -56,7 +57,7 @@ const SettingsPage = () => {
               >
                 {displayName}
               </h2>
-              <p className="mt-1 text-sm text-(--dashboard-muted)">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {user?.email || "Account profile"}
               </p>
             </div>
@@ -93,7 +94,10 @@ const SettingsPage = () => {
               <span className="text-sm font-medium">Profile picture</span>
               <div className="flex items-center gap-3">
                 <Avatar>
-                  <AvatarImage src={avatar.trim() || undefined} alt={displayName} />
+                  <AvatarImage
+                    src={avatar.trim() || undefined}
+                    alt={displayName}
+                  />
                   <AvatarFallback>{initials}</AvatarFallback>
                 </Avatar>
                 <ProfileImageDialog
@@ -105,10 +109,13 @@ const SettingsPage = () => {
               </div>
             </div>
 
-            <div className="flex justify-end border-t border-(--dashboard-border) pt-5">
-              <Button type="submit" size="lg">
-                Save changes
-              </Button>
+            <div className="flex justify-end border-t border-border pt-5">
+              <CustomBtn
+                icon={<Save />}
+                children="Save chnages"
+                type="button"
+                size={`lg`}
+              />
             </div>
           </div>
         </form>
